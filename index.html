@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
+    <!-- SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <title>Mediapintar</title>
 
     <link rel="stylesheet" href="css/style.css">
@@ -27,7 +30,7 @@
     <!-- /Loading panel -->
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-light position-sticky fixed-top nav-bg">
+    <nav class="navbar navbar-expand-lg navbar-light position-sticky fixed-top nav-bg">
         <a class="navbar-brand" href="#">
             <img src="icon.png" width="30" height="30" class="my-auto">
             <img src="brand.png" alt="Mediapintar.com" height="12" class="my-auto">
@@ -41,7 +44,7 @@
         </div>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav m-auto mr-3">
+            <ul class="navbar-nav m-auto">
                 <li class="nav-item custom-nav-item">
                     <a class="nav-link" href="#">Beranda</a>
                 </li>
@@ -73,7 +76,7 @@
     <!-- Content -->
     <div class="bg-light border-bottom">
         <div class="container">
-            <div class="p-5 w-100 row">
+            <div class="w-100 row">
                 <div class="col-md-7 text-center">
                     <img src="content1.png" alt="content1" class="rounded w-100">
                 </div>
@@ -151,11 +154,11 @@
     <div class="bg-secondary p-4 text-light">
         <div class="container">
             <div class="row d-flex justify-content-center">
-                <div class="col-sm-3">
+                <div class="col-sm-3 pb-4">
                     <table>
                         <tr>
                             <td rowspan="3">
-                                <i class="bi bi-file-earmark-text display-3"></i>
+                                <i class="bi bi-file-earmark-text display-4"></i>
                             </td>
                             <td>
                                 <h1 id="cMapel" class="">8</h1>
@@ -168,11 +171,11 @@
                         </tr>
                     </table>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 pb-4">
                     <table>
                         <tr>
                             <td rowspan="3">
-                                <i class="bi bi-file-earmark-text display-3"></i>
+                                <i class="bi bi-people display-4"></i>
                             </td>
                             <td>
                                 <h1 id="cManager" class="">3</h1>
@@ -185,11 +188,11 @@
                         </tr>
                     </table>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 pb-4">
                     <table>
                         <tr>
                             <td rowspan="3">
-                                <i class="bi bi-file-earmark-text display-3"></i>
+                                <i class="bi bi-pencil-square display-4"></i>
                             </td>
                             <td>
                                 <h1 id="cHari" class="">8</h1>
@@ -202,11 +205,11 @@
                         </tr>
                     </table>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 pb-4">
                     <table>
                         <tr>
                             <td rowspan="3">
-                                <i class="bi bi-file-earmark-text display-3"></i>
+                                <i class="bi bi-house-door display-4"></i>
                             </td>
                             <td>
                                 <h1 id="cMapel" class="">1</h1>
@@ -235,6 +238,29 @@
         </div>
     </div>
     <!-- /Quotes -->
+
+    <!-- Suggestion box -->
+    <div class="w-100 px-3 py-5">
+        <div class="container">
+            <h5 class="pb-3">Ada keluhan? Silahkan beri masukan pada kami : )</h5>
+
+            <form>
+                <div class="form-group">
+                    <label for="emailS">Email</label>
+                    <input type="email" class="form-control" id="emailS" placeholder="Silahkan masukkan email Anda . .">
+                </div>
+                <div class="form-group">
+                    <label for="txtS">Saran</label>
+                    <textarea name="txtS" id="txtS" rows="3" class="form-control"
+                        placeholder="Silahkan masukkan Saran Anda . ."></textarea>
+                </div>
+
+                <input type="reset" value="Reset" class="btn btn-warning">
+                <input type="button" value="Kirim" class="btn btn-primary" onclick="sClick()">
+            </form>
+        </div>
+    </div>
+    <!-- /Suggestion box -->
 
     <!-- Footer -->
     <div class="bg-dark text-light p-4 px-5 d-flex flex-wrap justify-content-between shadow shadow-lg">
@@ -266,7 +292,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
     -->
 
-    
+
 
     <script>
 
@@ -278,16 +304,37 @@
                 r = Math.floor(Math.random() * 7);
                 document.getElementById("qText").innerHTML = `Memuat . . .`;
                 document.getElementById("qAuthor").innerHTML = ``;
-                console.info(r);
                 quotes = json;
+                console.info("r = " + r);
             })
-            .catch((err)=>{
+            .catch((err) => {
                 document.getElementById("qText").innerHTML = `${err}`;
-            }).finally(()=>{
+            }).finally(() => {
                 document.getElementById("qText").innerHTML = `“${quotes['body'][r]['text']}”`;
                 document.getElementById("qAuthor").innerHTML = `<b>-- ${quotes['body'][r]['author']} --</b>`;
 
             });
+
+        const validateEmail = (email) => {
+            return email.match(
+                /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+        }
+
+            function sClick() {
+                let sEmail = document.getElementById("emailS");
+
+                if (validateEmail(sEmail['value']) != null)
+                    swal("Terima kasih", "Saran Anda telah terkirim.", "success");
+                else if (sEmail['value'] == '')
+                    swal("Mohon maaf", "Email tidak dapat dikosongkan.", "warning");
+                else if (validateEmail(sEmail['value']) == null)
+                    swal("Mohon maaf", "Email tidak valid.", "warning");
+                else if(document.getElementById('txtS').value == '')
+                    swal("Mohon maaf", "Saran tidak dapat di kosongkan.", "warning");
+                else
+                    swal("Mohon maaf","Saran Anda tidak terkirim.", "error");
+            }
 
     </script>
 </body>
