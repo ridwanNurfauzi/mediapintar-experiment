@@ -271,16 +271,22 @@
     <script>
 
         let r;
+        let quotes;
 
         fetch("quotes.json").then((res) => res.json())
             .then((json) => {
                 r = Math.floor(Math.random() * 7);
-                document.getElementById("qText").innerHTML = `“${json['body'][r]['text']}”`;
-                document.getElementById("qAuthor").innerHTML = `<b>-- ${json['body'][r]['author']} --</b>`;
+                document.getElementById("qText").innerHTML = `Memuat . . .`;
+                document.getElementById("qAuthor").innerHTML = ``;
                 console.info(r);
+                quotes = json;
             })
             .catch((err)=>{
                 document.getElementById("qText").innerHTML = `${err}`;
+            }).finally(()=>{
+                document.getElementById("qText").innerHTML = `“${quotes['body'][r]['text']}”`;
+                document.getElementById("qAuthor").innerHTML = `<b>-- ${quotes['body'][r]['author']} --</b>`;
+
             });
 
     </script>
