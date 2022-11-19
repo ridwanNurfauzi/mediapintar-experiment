@@ -1,0 +1,54 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+
+.nav-bg{
+    background-color: #eaeaeaea;
+}
+.custom-nav-item{
+    transition: .5s;
+}
+.custom-nav-item:hover{
+    background-color: #fff;
+    border-radius: 10px;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.class-btn{
+    transition: .3s;
+    background-color: #fff;
+    cursor: pointer;
+}
+.class-btn:hover{
+    background-color: #ddd;
+    transform: scale(1.1);
+}
+.class-btn:active{
+    background-color: #9a9a9a;
+}
+
+
+.load-panel {
+    animation: anim .8s;
+    visibility: hidden;
+}
+
+.loading {
+    width: 5.5em;
+    height: 5.5em;
+}
+
+@keyframes anim {
+    0% {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
