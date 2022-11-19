@@ -46,19 +46,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item custom-nav-item">
-                    <a class="nav-link" href="#">Beranda</a>
+                    <a class="nav-link" href="#home">Beranda</a>
                 </li>
                 <li class="nav-item custom-nav-item">
-                    <a class="nav-link" href="#">Kelas</a>
+                    <a class="nav-link" href="#kelas">Kelas</a>
                 </li>
                 <li class="nav-item custom-nav-item">
-                    <a class="nav-link" href="#">Tentang Kami</a>
+                    <a class="nav-link" href="#about">Tentang Kami</a>
                 </li>
                 <li class="nav-item custom-nav-item">
-                    <a class="nav-link" href="#">Subject</a>
+                    <a class="nav-link" href="#section">Section</a>
                 </li>
                 <li class="nav-item custom-nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
+                    <a class="nav-link" href="#quotes">Quotes</a>
                 </li>
             </ul>
             <div>
@@ -74,19 +74,19 @@
     <!-- /Navbar -->
 
     <!-- Content -->
-    <div class="bg-light border-bottom">
+    <div class="bg-light border-bottom" id="home">
         <div class="container py-4">
             <div class="row">
                 <div class="col-md-7 text-center">
                     <img src="content1.png" alt="content1" class="rounded w-100">
                 </div>
                 <div class="col-md-5 d-flex justify-content-center flex-column bg-light">
-                    <h3 class="my-3">Mediapintar.com</h3>
+                    <h2 class="my-3">Mediapintar.com</h2>
                     <p class="my-3">
                         <b>Selamat datang</b>,
                         di situs web pembelajaran <b>Mediapintar.com</b>.
                     </p>
-                    <a href="" class="btn btn-outline-primary my-2">
+                    <a href="#kelas" class="btn btn-outline-primary my-2">
                         Mulai belajar
                         <i class="bi bi-arrow-right"></i>
                     </a>
@@ -96,8 +96,8 @@
     </div>
     <!-- /Content -->
 
-    <!-- Mata Pelajaran -->
-    <div class="bg-white">
+    <!-- Kelas -->
+    <div class="bg-white" id="kelas">
         <div class="container py-4">
             <h2 class="text-center pb-2">Kelas</h2>
             <div class="d-flex align-content-center justify-content-center flex-wrap">
@@ -119,10 +119,10 @@
             </div>
         </div>
     </div>
-    <!-- /Mata Pelajaran -->
+    <!-- /Kelas -->
 
     <!-- Tentang Kami -->
-    <div class="bg-light bg-opacity-25 py-4 border">
+    <div class="bg-light bg-opacity-25 py-4 border" id="about">
         <div class="container">
             <h3 class="text-center mb-5 mt-4">Tentang Kami</h3>
             <div class="row">
@@ -151,7 +151,7 @@
     <!-- /Tentang Kami -->
 
     <!-- Number Counter -->
-    <div class="bg-secondary p-4 text-light">
+    <div class="bg-secondary p-4 text-light" id="section">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-sm-3 pb-4">
@@ -228,7 +228,7 @@
     <!-- /Number Counter -->
 
     <!-- Quotes -->
-    <div class="bg-light w-100 p-2 pb-4 border-bottom">
+    <div class="bg-light w-100 p-2 pb-4 border-bottom" id="quotes">
         <div class="container">
             <h3 class="text-center my-3">Quotes</h3>
             <div class="border p-4 rounded text-center rounded-lg shadow py-5">
@@ -264,7 +264,7 @@
 
     <!-- Footer -->
     <div class="bg-dark text-light p-4 px-5 d-flex flex-wrap justify-content-between shadow shadow-lg">
-        <div>Copyright &copy; 2022 Mediapintar.com</div>
+        <div>Copyright &copy; 2022 <b>Mediapintar.com</b></div>
         <div>
             Made with
             <i class="bi bi-heart-fill text-danger"></i>
@@ -311,7 +311,7 @@
                 document.getElementById("qText").innerHTML = `${err}`;
             }).finally(() => {
                 document.getElementById("qText").innerHTML = `“${quotes['body'][r]['text']}”`;
-                document.getElementById("qAuthor").innerHTML = `<b>-- ${quotes['body'][r]['author']} --</b>`;
+                document.getElementById("qAuthor").innerHTML = `<b>- - ${quotes['body'][r]['author']} - -</b>`;
 
             });
 
@@ -324,14 +324,15 @@
             function sClick() {
                 let sEmail = document.getElementById("emailS");
 
-                if (validateEmail(sEmail['value']) != null)
-                    swal("Terima kasih", "Saran Anda telah terkirim.", "success");
-                else if (sEmail['value'] == '')
+                if (sEmail['value'] == '')
                     swal("Mohon maaf", "Email tidak dapat dikosongkan.", "warning");
                 else if (validateEmail(sEmail['value']) == null)
                     swal("Mohon maaf", "Email tidak valid.", "warning");
                 else if(document.getElementById('txtS').value == '')
-                    swal("Mohon maaf", "Saran tidak dapat di kosongkan.", "warning");
+                    swal("Mohon maaf", "Text saran tidak dapat di kosongkan.", "warning");
+
+                else if (validateEmail(sEmail['value']) != null)
+                    swal("Terima kasih", "Saran Anda telah terkirim.", "success");
                 else
                     swal("Mohon maaf","Saran Anda tidak terkirim.", "error");
             }
