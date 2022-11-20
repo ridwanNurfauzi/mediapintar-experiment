@@ -101,17 +101,17 @@
         <div class="container py-4">
             <h2 class="text-center pb-2">Kelas</h2>
             <div class="d-flex align-content-center justify-content-center flex-wrap">
-                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn"
+                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn" onclick="classNoYetAvailable()"
                     style="width: 240px;height: 140px;">
                     <h1><i class="bi bi-door-open"></i></h1>
                     <h5>Kelas 10</h5>
                 </div>
-                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn"
+                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn" onclick="classNoYetAvailable()"
                     style="width: 240px;height: 140px;">
                     <h1><i class="bi bi-journal-arrow-up"></i></h1>
                     <h5>Kelas 11</h5>
                 </div>
-                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn"
+                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn" onclick="classNoYetAvailable()"
                     style="width: 240px;height: 140px;">
                     <h1><i class="bi bi-bookmark-star"></i></h1>
                     <h5>Kelas 12</h5>
@@ -321,21 +321,25 @@
             );
         }
 
-            function sClick() {
-                let sEmail = document.getElementById("emailS");
+        function sClick() {
+            let sEmail = document.getElementById("emailS");
 
-                if (sEmail['value'] == '')
-                    swal("Mohon maaf", "Email tidak dapat dikosongkan.", "warning");
-                else if (validateEmail(sEmail['value']) == null)
-                    swal("Mohon maaf", "Email tidak valid.", "warning");
-                else if(document.getElementById('txtS').value == '')
-                    swal("Mohon maaf", "Text saran tidak dapat di kosongkan.", "warning");
+            if (sEmail['value'] == '')
+                swal("Mohon maaf", "Email tidak dapat dikosongkan.", "warning");
+            else if (validateEmail(sEmail['value']) == null)
+                swal("Mohon maaf", "Email tidak valid.", "warning");
+            else if (document.getElementById('txtS').value == '')
+                swal("Mohon maaf", "Text saran tidak dapat di kosongkan.", "warning");
 
-                else if (validateEmail(sEmail['value']) != null)
-                    swal("Terima kasih", "Saran Anda telah terkirim.", "success");
-                else
-                    swal("Mohon maaf","Saran Anda tidak terkirim.", "error");
-            }
+            else if (validateEmail(sEmail['value']) != null)
+                swal("Terima kasih", "Saran Anda telah terkirim.", "success");
+            else
+                swal("Mohon maaf", "Saran Anda tidak terkirim.", "error");
+        }
+
+        function classNoYetAvailable(){
+            swal("Mohon maaf", "Kelas ini belum tersedia.", "warning");
+        }
 
     </script>
 </body>
