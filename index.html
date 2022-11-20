@@ -104,17 +104,17 @@
         <div class="container py-4">
             <h2 class="text-center pb-2">Kelas</h2>
             <div class="d-flex align-content-center justify-content-center flex-wrap">
-                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn" onclick="classNoYetAvailable()"
+                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn" onclick="kelasBelumTersedia()"
                     style="width: 240px;height: 140px;">
                     <h1><i class="bi bi-door-open"></i></h1>
                     <h5>Kelas 10</h5>
                 </div>
-                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn" onclick="classNoYetAvailable()"
+                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn" onclick="kelasBelumTersedia()"
                     style="width: 240px;height: 140px;">
                     <h1><i class="bi bi-journal-arrow-up"></i></h1>
                     <h5>Kelas 11</h5>
                 </div>
-                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn" onclick="classNoYetAvailable()"
+                <div class="border border-1 rounded m-2 p-3 text-center shadow class-btn" onclick="kelasBelumTersedia()"
                     style="width: 240px;height: 140px;">
                     <h1><i class="bi bi-bookmark-star"></i></h1>
                     <h5>Kelas 12</h5>
@@ -230,6 +230,22 @@
     </div>
     <!-- /Number Counter -->
 
+    <!-- Iklan -->
+    <div class="w-100 border-top border-bottom">
+        <div class="container">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <center>
+                    iklan
+                    <div class="w-75" id="ads1"></div>
+                </center>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- /Iklan -->
+
     <!-- Quotes -->
     <div class="bg-light w-100 p-2 pb-4 border-bottom" id="quotes">
         <div class="container">
@@ -301,22 +317,29 @@
 
         let r;
         let quotes;
+        let iklan = Math.floor(Math.random() * 4);
 
-        fetch("quotes.json").then((res) => res.json())
-            .then((json) => {
-                r = Math.floor(Math.random() * 7);
-                document.getElementById("qText").innerHTML = `Memuat . . .`;
-                document.getElementById("qAuthor").innerHTML = ``;
-                quotes = json;
-                console.info("r = " + r);
-            })
-            .catch((err) => {
-                document.getElementById("qText").innerHTML = `${err}`;
-            }).finally(() => {
-                document.getElementById("qText").innerHTML = `“${quotes['body'][r]['text']}”`;
-                document.getElementById("qAuthor").innerHTML = `<b>- - ${quotes['body'][r]['author']} - -</b>`;
 
-            });
+
+        window.onload = (e) => {
+            fetch("quotes.json").then((res) => res.json())
+                .then((json) => {
+                    r = Math.floor(Math.random() * 7);
+                    document.getElementById("qText").innerHTML = `Memuat . . .`;
+                    document.getElementById("qAuthor").innerHTML = ``;
+                    quotes = json;
+                    console.info("r = " + r);
+                })
+                .catch((err) => {
+                    document.getElementById("qText").innerHTML = `${err}`;
+                }).finally(() => {
+                    document.getElementById("qText").innerHTML = `“${quotes['body'][r]['text']}”`;
+                    document.getElementById("qAuthor").innerHTML = `<b>- - ${quotes['body'][r]['author']} - -</b>`;
+
+                });
+
+            $('#ads1')[0].innerHTML = `<img src="iklan/iklan${iklan + 1}.jpg" width="180" alt="iklan ${iklan + 1}">`;
+        }
 
         const validateEmail = (email) => {
             return email.match(
@@ -340,8 +363,12 @@
                 swal("Mohon maaf", "Saran Anda tidak terkirim.", "error");
         }
 
-        function classNoYetAvailable(){
+        function kelasBelumTersedia() {
             swal("Mohon maaf", "Kelas ini belum tersedia.", "warning");
+        }
+
+        function fiturBelumTersedia() {
+            swal("Mohon maaf", "Fitur ini belum tersedia.", "warning");
         }
 
     </script>
